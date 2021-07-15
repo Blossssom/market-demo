@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market demo</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+        integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/card.css" type="text/css">
+
+    <link rel="stylesheet" href="./css/reset.css" type="text/css">
+    <link rel="stylesheet" href="./css/common.css" type="text/css">
+    <link rel="stylesheet" href="./css/main.css" type="text/css">
+    <link rel="stylesheet" href="./css/style.css" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"
+        integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/6.10.1/system.min.js"
+        integrity="sha512-4FUrBDwhBp//QRfPgfiGYgHAYCN+SlfeLdLjo9Di5+wot02uLjTQriXOXv8LnZDt9HovhckPvdihnByFbbfVJA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="create.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <div class="body-wrap">
+        <div class="display-hidden">
+            Accounts: <span id="accountsDiv"></span><br>
+            ETH: <span id="accountsETH"></span><br>
+            SLT: <span id="accountsSLT"></span><br>
+            NFT: <span id="accountsNFT"></span><br>
+            Total patents : <span id="patentTotal">0</span><br>
+            Index : <input type="text" id="patentIndex" value="0">
+            <button id="searchButton">Get Patent</button><br>
+            Owner : <span id="patentOwner"></span><br>
+            Status : <span id="salesStatus"></span><br>
+            Last Buyer : <span id="lastBuyer"></span><br>
+            Last Price : <span id="lastPrice"></span><br>
+            Deadline : <input type="text" id="patentDeadline" value="0"><span id="currentTime"></span></p>
+            Number : <span id="patentNumber2"></span><br>
+            Type : <span id="salesType2"></span><br>
+            Price : <span id="patentPrice2"></span><br>
+            Deadline : <span id="patentDeadline2"></span><br>
+            <p>==========================================</p>
+            Amount : <input type="text" id="buyAmount" value="0">
+            <button id="buyButton">Buy Patent</button><br>
+            Buyer : <span id="balanceBuyer"></span><br>
+            Owner : <span id="balanceOwner"></span><br>
+            Market : <span id="balanceMarket"></span><br>
+
+            <p>==========================================</p>
+            <button id="deleteButton">Delete Patent</button>
+            <button id="finalizeButton">Finalize Patent</button>
+
+            <p>==========================================</p>
+            Event History<br>
+            <textarea id="eventHistory" rows="10" cols="80"></textarea>
+
+            <p>==========================================</p>
+            Index : <input type="text" id="getIndex" value="0">
+            <button id="getButton">GET</button><br>
+            GET: <span id="getResult"></span><br>
+        </div>
+        <header>
+            <div class="header-wrap shadow-bottom">
+                <div class="header-nav">
+                    <div class="header-nav__inner">
+                        <div class="header-title">
+                            <a href="saleList-02.html" class="header-title__logo">
+                                <img src="../assets/images/logo_transparent.png" alt="logo">
+                            </a>
+                        </div>
+                        <!-- inputbar -->
+                        <div class="header-input padding-side__1r border-1__dg border-r5">
+                            <div class="header-input__bar div-flex__jsb">
+                                <input type="text" placeholder="Search" class="input-bar">
+                                <i class="fas fa-search"></i>
+                            </div>
+                        </div>
+                        <div class="header-menu">
+                            <ul>
+                                <li class="header-menu__list">
+                                    <a href="./saleList-02.html" class="btn-header-menu">
+                                        <h2>MarketPlace</h2>
+                                    </a>
+                                </li>
+                                <li class="header-menu__list">
+                                    <a href="#" class="btn-header-menu">
+                                        <h2>About Us</h2>
+                                    </a>
+                                </li>
+                                <li class="header-menu__list div-flex__jsc">
+                                    <div class="div-bar__gray">
+                                    </div>
+                                </li>
+                                <li class="header-menu__list">
+                                    <a href="#" class="btn-header-menu">
+                                        <i class="fas fa-user fa-lg"></i>
+                                    </a>
+                                </li>
+                                <li class="header-menu__list">
+                                    <a href="#" class="btn-header-menu">
+                                        <i class="fas fa-wallet fa-lg"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div id="main-container">
+            <div class="main-wrap">
+
+                <!-- main contents -->
+                <section class="main-contents margin-col__3r">
+                    <div class="main-contents__wrap">
+                        <div class="register-box margin-a">
+                            <div class="margin-top__3r">
+                                <p class="font-size__2hr font-weight__600">Create NFTs</p>
+                            </div>
+                            <button id="metaMaskButton" class="margin-top__1r">Connect to MetaMask</button>
+                            <!-- input list -->
+                            <div class="div-flex__col hw-100 margin-top__2r">
+                                <div class="div-flex__col hw-100">
+
+                                    <div class="hw-100">
+                                        <span class="font-weight__600">Upload File</span>
+                                    </div>
+                                    <div class="border-dash__gray upload-box div-flex__colal margin-top__hr">
+                                        <input type="file" id="upload-file">
+                                        <div class="div-flex__colal">
+                                            <span class="font-color__gray font-weight__600">Upload picture in PNG, JPG
+                                                or GIF</span>
+                                            <div class="margin-top__1r">
+                                                <button class="btn-create__upload div-flex__jsc">
+                                                    <span class="font-weight__600">Choose File in Desktop</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- select auction -->
+                                    <div class="hw-100 margin-top__2r">
+                                        <span class="font-weight__600">
+                                            Sale Method
+                                        </span>
+                                    </div>
+                                    <div class="hw-100 margin-top__hr">
+                                        <div class="div-flex__jsb hw-100">
+                                            <button class="create-select__auction div-flex__colal" value="0">
+                                                <img src="../assets/images/bookmark_border_black_36dp.svg" alt="">
+                                                <div class="select-auction__txt">
+                                                    <span class="font-weight__600 font-color__gray">Fixed price</span>
+                                                </div>
+                                            </button>
+                                            <button
+                                                class="create-select__auction div-flex__colal border-1__dg margin-side__1r">
+                                                <img src="../assets/images/query_builder_black_36dp.svg" alt="">
+                                                <div class="select-auction__txt">
+                                                    <span class="font-weight__600 font-color__gray">Timed auction</span>
+                                                </div>
+                                            </button>
+                                            <button class="create-select__auction div-flex__colal border-1__dg"
+                                                value="1">
+                                                <img src="../assets/images/all_inclusive_black_36dp.svg" alt="">
+                                                <div class="select-auction__txt">
+                                                    <span class="font-weight__600 font-color__gray">Unlimited
+                                                        auction</span>
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- patent num -->
+                                    <div class="hw-100 margin-top__2r">
+                                        <span class="font-weight__600">
+                                            Patent Number
+                                        </span>
+                                    </div>
+                                    <div class="div-flex__jsb hw-100 input-price__box border-bottom__gray">
+                                        <div class="hw-100">
+                                            <div class="hw-100 div-flex__jsb">
+                                                <input type="text" placeholder="Enter Patent number"
+                                                    class="create-input__patentnum create-input__value"
+                                                    id="patentNumber">
+                                                <button id="crawlBtn">Look up</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="hw-100 margin-top__1r">
+                                        <span class="font-weight__600">
+                                            Patent Title
+                                        </span>
+                                    </div>
+                                    <div class="div-flex__jsb hw-100 input-price__box border-bottom__gray">
+                                        <div class="hw-100">
+                                            <div class="hw-100 div-flex__jsb">
+                                                <span id="textTitle" class="font-color__gray">Patent Title</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <!-- select price -->
+                                    <div class="hw-100 margin-top__1r">
+                                        <span class="font-weight__600">
+                                            Price
+                                        </span>
+                                    </div>
+                                    <div class="div-flex__jsb hw-100 input-price__box border-bottom__gray">
+                                        <div class="hw-100">
+                                            <div class="hw-100">
+                                                <input type="number" placeholder="Enter price"
+                                                    class="create-input__price create-input__value" id="patentPrice">
+                                            </div>
+                                        </div>
+                                        <div class="margin-side__1r">
+                                            <div>
+                                                <span class="font-weight__600">PLT</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <!-- auction option -->
+                                    <div class="display-hidden">
+                                        <div class="hw-100 margin-top__1r">
+                                            <span class="font-weight__600">
+                                                DeadLine
+                                            </span>
+                                        </div>
+                                        <div class="div-flex__jsb hw-100 input-price__box border-bottom__gray">
+                                            <div class="hw-100">
+                                                <div class="hw-100">
+                                                    <input type="number" placeholder="Enter Deadline"
+                                                        class="create-input__patentnum create-input__value">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- input button -->
+                                <div class="div-flex__jsc">
+                                    <div class="margin-top__2r">
+                                        <div>
+                                            <button type="button"
+                                                class="div-flex__jsc padding-side__1r hw-100 create-item__btn"
+                                                id="registerButton">Create</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+        </div>
+
+        <footer class="footer-bg">
+            <div class="footer-wrap">
+                <div class="footer-link div-flex__jsb">
+                    <div>
+                        <ul class="div-flex__jsb">
+                            <li>
+                                <a href="#">
+                                    About
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Info
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Privacy Policy
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Term of Service
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul class="div-flex__jsb">
+                            <li>
+                                <a href="#"><i class="fab fa-github fa-lg"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fas fa-envelope fa-lg"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fab fa-reddit fa-lg"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div class="footer-text">
+                    <div class="footer-text__wrap div-flex__aib">
+                        <div class="footer-text__box">
+                            <h4 class="font-size__1sr font-weight__600">Buy</h4>
+                            <a href="#" class="anchor-db mb-2">Lorem, ipsum.</a>
+                            <a href="#" class="anchor-db mb-2">Lorem, ipsum.</a>
+                            <a href="#" class="anchor-db mb-2">Lorem, ipsum.</a>
+                        </div>
+                        <div class="footer-text__box">
+                            <h4 class="font-size__1sr font-weight__600">Sale</h4>
+                            <a href="#" class="anchor-db mb-2">Lorem, ipsum.</a>
+                            <a href="#" class="anchor-db mb-2">Lorem, ipsum.</a>
+                            <a href="#" class="anchor-db mb-2">Lorem, ipsum.</a>
+                            <a href="#" class="anchor-db mb-2">Lorem, ipsum.</a>
+                        </div>
+                        <div class="footer-text__box">
+                            <h4 class="font-size__1sr font-weight__600">Auction</h4>
+                            <a href="#" class="anchor-db mb-2">Lorem, ipsum.</a>
+                            <a href="#" class="anchor-db mb-2">Lorem, ipsum.</a>
+                        </div>
+                        <div class="footer-text__box">
+                            <h4 class="font-size__1sr font-weight__600">About Us</h4>
+                            <a href="#" class="anchor-db mb-2">Lorem, ipsum.</a>
+                            <a href="#" class="anchor-db mb-2">Lorem, ipsum.</a>
+                            <a href="#" class="anchor-db mb-2">Lorem, ipsum.</a>
+                            <a href="#" class="anchor-db mb-2">Lorem, ipsum.</a>
+                            <a href="#" class="anchor-db mb-2">Lorem, ipsum.</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </footer>
+    </div>
+    <script src="index.js" type="module" defer></script>
+    <!-- <script src="../js/index.js" type="module" defer></script> -->
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "RestApiServer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.20.0",
+    "cheerio": "^1.0.0-rc.2",
+    "ethers": "^5.4.1",
+    "express": "^4.17.1",
+    "truffle": "^5.4.0"
+  }
+}

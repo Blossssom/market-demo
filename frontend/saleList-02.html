@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market demo</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+        integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/card.css" type="text/css">
+    <link rel="stylesheet" href="./css/reset.css" type="text/css">
+    <link rel="stylesheet" href="./css/common.css" type="text/css">
+    <link rel="stylesheet" href="./css/main.css" type="text/css">
+    <link rel="stylesheet" href="./css/style.css" type="text/css">
+
+    <script src="test.js" type="text/javascript"></script>
+</head>
+
+<body>
+
+
+    <div class="display-hidden">
+        <button id="metaMaskButton">Connect to MetaMask</button><br>
+        Accounts: <span id="accountsDiv"></span><br>
+        ETH: <span id="accountsETH"></span><br>
+        SLT: <span id="accountsSLT"></span><br>
+        NFT: <span id="accountsNFT"></span><br>
+        <p>==========================================</p>
+        Number : <input type="text" id="patentNumber" value="12345">
+        <button id="crawlBtn">Crawl</button>
+        <br>
+        Title : <span id="textTitle"></span><br>
+        Type : <input type="text" id="salesType" value="1"> (0:SELL, 1:AUCTION)<br>
+        Price : <input type="text" id="patentPrice" value="100"><br>
+        Deadline : <input type="text" id="patentDeadline" value="0"><span id="currentTime"></span></p>
+
+        <button id="registerButton">Register Patent</button>
+
+        <p>==========================================</p>
+        Total patents : <span id="patentTotal">0</span><br>
+        <!-- Index : <input type="text" id="patentIndex" value="0"> -->
+        <button id="searchButton">Get Patent</button><br>
+        Number : <span id="patentNumber2"></span><br>
+        Type : <span id="salesType2"></span><br>
+        Price : <span id="patentPrice2"></span><br>
+        Deadline : <span id="patentDeadline2"></span><br>
+        Owner : <span id="patentOwner"></span><br>
+        Status : <span id="salesStatus"></span><br>
+        Last Buyer : <span id="lastBuyer"></span><br>
+        Last Price : <span id="lastPrice"></span><br>
+
+        <p>==========================================</p>
+        <!-- Amount : <input type="text" id="buyAmount" value="0"> -->
+        <!-- <button id="buyButton">Buy Patent</button><br> -->
+        Buyer : <span id="balanceBuyer"></span><br>
+        Owner : <span id="balanceOwner"></span><br>
+        Market : <span id="balanceMarket"></span><br>
+
+        <p>==========================================</p>
+        <button id="deleteButton">Delete Patent</button>
+        <button id="finalizeButton">Finalize Patent</button>
+
+        <p>==========================================</p>
+        Event History<br>
+        <textarea id="eventHistory" rows="10" cols="80"></textarea>
+
+        <p>==========================================</p>
+        Index : <input type="text" id="getIndex" value="0">
+        <button id="getButton">GET</button><br>
+        GET: <span id="getResult"></span><br>
+
+        <p>==========================================</p>
+    </div>
+
+
+    <div class="detail-full">
+        <div class="div-flex__colal h-100" id="modal-out">
+            <div class="detail-body">
+                <div class="modal-detail__img">
+                    <img src="" alt="" id="product-img">
+                </div>
+                <div class="modal-detail__txt">
+                    <div class="modal-detail__info">
+                        <div class="margin-bottom_2r">
+                            <input type="text" id="patentIndex" value="0" class="display-hidden">
+                            <div class="modal-box__title">
+                                <h1 id="product-title">Title</h1>
+                            </div>
+                            <div>
+                                Highest bid
+                            </div>
+                        </div>
+                        <div class="margin-bottom_2r modal-box__desc">
+                            <span id="product-desc">
+                                product text
+                            </span>
+                        </div>
+                        <!-- 소유자 flex-row -->
+                        <div class="div-flex__jsb margin-bottom_1r">
+                            <div class="modal-txt__owner">
+                                <div class="modal-txt__small">
+                                    <span>Owner</span>
+                                </div>
+                                <div>
+                                    <span id="patent-owner">Blossom</span>
+                                </div>
+                            </div>
+                            <div class="modal-txt__patnum">
+                                <div class="modal-txt__small">
+                                    <span>Patent Number</span>
+                                </div>
+                                <div>
+                                    <span id="patent-num">123423423352</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="div-flex__jsc margin-bottom_1r">
+                            <a href="#" class="modal-info__btn">
+                                <div class="modal-info__title">
+                                    <span>more detail info</span>
+                                </div>
+                            </a>
+                        </div>
+
+                    </div>
+                    <div class="div-flex__col margin-top__1r">
+                        <div class="margin-bottom_1r">
+                            <div class="modal-txt__small">
+                                <span>Current Price</span>
+                            </div>
+                            <span id="patent-price">0</span>
+                        </div>
+                        <div>
+                            <div class="modal-txt__small">
+                                <span>Input Amount</span>
+                            </div>
+                            <input type="number" id="buyAmount" value="0">
+                        </div>
+                    </div>
+                    <div class="div-flex__jsc margin-bottom_1r">
+                        <button class="modal-info__btn" id="buyButton">
+                            <div class="modal-info__title">
+                                <span>Buy Patent</span>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="body-wrap">
+        <header>
+            <div class="header-wrap shadow-bottom">
+                <div class="header-nav">
+                    <div class="header-nav__inner">
+                        <div class="header-title">
+                            <a href="index.html" class="header-title__logo">
+                                <img src="../assets/images/logo_transparent.png" alt="logo">
+                            </a>
+                        </div>
+                        <!-- inputbar -->
+                        <div class="header-input padding-side__1r border-1__dg border-r5">
+                            <div class="header-input__bar div-flex__jsb">
+                                <input type="text" placeholder="Search" class="input-bar">
+                                <i class="fas fa-search"></i>
+                            </div>
+                        </div>
+                        <div class="header-menu">
+                            <ul>
+                                <li class="header-menu__list">
+                                    <a href="./saleList-02.html" class="btn-header-menu">
+                                        <h2>MarketPlace</h2>
+                                    </a>
+                                </li>
+                                <li class="header-menu__list">
+                                    <a href="#" class="btn-header-menu">
+                                        <h2>About Us</h2>
+                                    </a>
+                                </li>
+                                <li class="header-menu__list div-flex__jsc">
+                                    <div class="div-bar__gray">
+                                    </div>
+                                </li>
+                                <li class="header-menu__list">
+                                    <a href="#" class="btn-header-menu">
+                                        <i class="fas fa-user fa-lg"></i>
+                                    </a>
+                                </li>
+                                <li class="header-menu__list">
+                                    <a href="#" class="btn-header-menu">
+                                        <i class="fas fa-wallet fa-lg"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div id="main-container">
+            <div class="main-wrap">
+                <section class="main-contents">
+                    <div class="main-contents__wrap bg-reset">
+                        <div class="main-search__wrap">
+                            <div class="search-bar">
+                                <div class="search-bar__box">
+                                    <input type="text" placeholder="Search" class="search-bar__buy">
+                                    <i class="fas fa-search fa-lg"></i>
+                                </div>
+                            </div>
+
+                            <div class="search-select">
+                                <div class="search-select__box">
+                                    <div class="select-drop__wrap">
+                                        <div class="search-select__drop">
+                                            <div class="select-drop__list">
+                                                <p>Category</p>
+                                            </div>
+                                            <i class="fas fa-chevron-down"></i>
+                                        </div>
+
+                                        <ul class="select-drop__items drop-item__category">
+                                            <li class="select-drop__item search-select__drop">
+                                                <p>의류/잡화</p>
+                                            </li>
+                                            <li class="select-drop__item search-select__drop">
+                                                <p>식품/유아동</p>
+                                            </li>
+                                            <li class="select-drop__item search-select__drop">
+                                                <p>기계/자동차</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="search-select__box">
+                                    <div class="select-drop__wrap">
+                                        <div class="search-select__drop">
+                                            <div class="select-drop__list">
+                                                <p>Current</p>
+                                            </div>
+                                            <i class="fas fa-chevron-down"></i>
+                                        </div>
+
+                                        <ul class="select-drop__items drop-item__sort">
+                                            <li class="select-drop__item search-select__drop">
+                                                <p>Low Price</p>
+                                            </li>
+                                            <li class="select-drop__item search-select__drop">
+                                                <p>High Price</p>
+                                            </li>
+                                            <li class="select-drop__item search-select__drop">
+                                                <p>Most View</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row pb-5 mb-5" id="card-box">
+                        </div>
+
+                        <!-- -->
+
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <footer class="footer-bg">
+            <div class="footer-wrap">
+                <div class="footer-link div-flex__jsb">
+                    <div>
+                        <ul class="div-flex__jsb">
+                            <li>
+                                <a href="#">
+                                    About
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Info
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Privacy Policy
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Term of Service
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul class="div-flex__jsb">
+                            <li>
+                                <a href="#"><i class="fab fa-github fa-lg"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fas fa-envelope fa-lg"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fab fa-reddit fa-lg"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div class="footer-text">
+                    <div class="footer-text__wrap div-flex__aib">
+                        <div class="footer-text__box">
+                            <h4 class="font-size__1sr font-weight__600">Buy</h4>
+                            <a href="#" class="anchor-db mb-2">Lorem, ipsum.</a>
+                            <a href="#" class="anchor-db mb-2">Lorem, ipsum.</a>
+                            <a href="#" class="anchor-db mb-2">Lorem, ipsum.</a>
+                        </div>
+                        <div class="footer-text__box">
+                            <h4 class="font-size__1sr font-weight__600">Sale</h4>
+                            <a href="#" class="anchor-db mb-2">Lorem, ipsum.</a>
+                            <a href="#" class="anchor-db mb-2">Lorem, ipsum.</a>
+                            <a href="#" class="anchor-db mb-2">Lorem, ipsum.</a>
+                            <a href="#" class="anchor-db mb-2">Lorem, ipsum.</a>
+                        </div>
+                        <div class="footer-text__box">
+                            <h4 class="font-size__1sr font-weight__600">Auction</h4>
+                            <a href="#" class="anchor-db mb-2">Lorem, ipsum.</a>
+                            <a href="#" class="anchor-db mb-2">Lorem, ipsum.</a>
+                        </div>
+                        <div class="footer-text__box">
+                            <h4 class="font-size__1sr font-weight__600">About Us</h4>
+                            <a href="#" class="anchor-db mb-2">Lorem, ipsum.</a>
+                            <a href="#" class="anchor-db mb-2">Lorem, ipsum.</a>
+                            <a href="#" class="anchor-db mb-2">Lorem, ipsum.</a>
+                            <a href="#" class="anchor-db mb-2">Lorem, ipsum.</a>
+                            <a href="#" class="anchor-db mb-2">Lorem, ipsum.</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </footer>
+    </div>
+    <script src="./index.js" type="module" defer></script>
+</body>
+
+
+</html>
