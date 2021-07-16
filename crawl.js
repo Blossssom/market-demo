@@ -7,7 +7,7 @@ const fs = require('fs');
 const crawlFilePath = './file/crawl/crawl.json';
 let crawlList = JSON.parse(fs.readFileSync(crawlFilePath, 'utf8'));
 const crawlFileDir = './file/crawl/';
- n
+
 async function getHtml(patentNum) {
     try {
         return await axios.get(`http://kpat.kipris.or.kr/kpat/biblioa.do?method=biblioMain_biblio&next=biblioViewSub01&applno=${patentNum}&getType=BASE&link=N`);      
