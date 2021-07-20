@@ -1,1 +1,10 @@
-{"number":"2020010027201","type":"0","price":"200","deadline":"0","owner":"0x322AF0aAfcB69bcF3697141749c0a732a1fD2E27","title":"폴리에스터/폴리아미드 분할형 복합사 및 이의 제조방법Polyester/Polyamide Split Type Composite Yarn and  A  Process for Preparing the Same","desc":"본 발명은 폴리에스터/폴리아미드 분할형 복합사 및 이의 제조방법에 관한 것으로, 제1 성분은 95중량% 이상이 폴리에스터이고, 나머지는 폴리에스터 코폴리머가 포함될 수 있으며, 제2 성분은 폴리아미드 6를 사용하며, 제2 성분이 복합사의 전체 중량을 기준으로 하여 10 내지 70중량%로 되도록 복합하여 제조하며, 원 스텝 제조조건이 통상의 스핀 드로우 공법과 다른 온도, 속도 및 연신비를 적용하여 제조함으로써 감량율과 분할성이 우수한 분할형 복합사를 높은 생산성으로 제조하는 방법을 제공한다.","img":"http://kpat.kipris.or.kr/kpat/remoteFile.do?method=bigFrontDraw&applno=1020100137900"}
+{
+    "number": "1020107012708",
+    "type": "0",
+    "price": "1500",
+    "deadline": "0",
+    "owner": "0x4BD30DBC850AfDa56342Ab17bA5bAB7da42C2C05",
+    "title": "승객 컨베이어용 제동 장치BRAKING DEVICE FOR A PASSENGER CONVEYOR",
+    "desc": "본 발명은 적어도 하나의 가동부(12)를 포함하는 승객 컨베이어용 제동 장치(10)에 관한 것이다.  제동 장치(10)는 승객 컨베이어의 가동부(12)와 결합가능한 제동부(34)를 갖는 제동 요소(18)를 포함한다.  제동 요소(18)는 제동부(34)가 승객 컨베이어의 상기 가동부(12)와 결합되는 위치까지 제 1 방향으로 이동가능하다.  제동 요소(18)는, 제동부(34)가 승객 컨베이어의 가동부(12)와 결합된 상태에서, 제동부(34)의 초기 결합 위치에서 제동 요소(18)의 제동 위치까지 제 2 방향으로 이동가능하다.  제 2 방향으로의 이동은 승객 컨베이어의 가동부(12)의 이동에 의하여 구동된다.  ",
+    "img": "http://kpat.kipris.or.kr/kpat/remoteFile.do?method=bigFrontDraw&applno=1020107012708"
+}

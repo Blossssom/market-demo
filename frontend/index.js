@@ -2,6 +2,9 @@
 import { ethers } from "./ethers.js";
 import { patentMarketAddress, patentNFTAddress, saltCoinAddress } from "./contract.js";
 import { patentMarketAbi, patentNFTAbi, saltCoinAbi } from "./contract.js";
+// import {registerAct} from './registerAction.js';
+// import { buyAct } from "./buyAction.js";
+
 
 var provider;
 var signer;
@@ -158,10 +161,8 @@ async function GetCrawlFile(patentNum) {
 }
 
 
-async function _UpdateElement() {
 
-    
-
+async function postRegister() {
     const metaMaskButton = document.getElementById('metaMaskButton');
     if (GetMetaMaskStatus() === MetaMaskStatus.NOT_INSTALLED) {
         metaMaskButton.innerText = 'MetaMask is not installed';
@@ -173,17 +174,9 @@ async function _UpdateElement() {
         metaMaskButton.innerText = 'Connect to MetaMask';
         metaMaskButton.onclick = async () => {
             await _GetAccount();
-            _UpdateElement();
         }
         metaMaskButton.disabled = false;
     }
-    let address = GetCurrentAccount();
-    document.getElementById('accountsDiv').innerHTML = address;
-    document.getElementById('accountsETH').innerHTML = await GetEthereumBalance(address);
-    document.getElementById('accountsSLT').innerHTML = await GetSaltCoinBalance(address);
-    document.getElementById('accountsNFT').innerHTML = await GetPatentNFTBalance(address);
-    //////////////////////////////////////////////////////////////////////////////////
-
 
     document.getElementById('crawlBtn').onclick = async () => {
         const crawlData = await GetCrawlFile(document.getElementById('patentNumber').value);
@@ -193,11 +186,10 @@ async function _UpdateElement() {
         ptTitle = crawlData[0].title;
         desc = crawlData[0].desc;
         patentImg = crawlData[0].img;
-        _UpdateElement();
     }
 
 
-    //////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////
     document.getElementById('registerButton').onclick = async () => {
         let number = document.getElementById('patentNumber').value;
         let type = document.getElementById('salesType').value;
@@ -206,7 +198,7 @@ async function _UpdateElement() {
 
         let title = document.getElementById('textTitle').text;
 
-        // NEED TO MERGE
+
         
         let res = await _WriteRegisterFile(number, type, price, deadline, GetCurrentAccount(), ptTitle, desc, patentImg);
         if(res !== 'OK') {
@@ -214,64 +206,30 @@ async function _UpdateElement() {
             return;
         }
         await RegisterPatent(number, type, price, deadline);
-        // MERGE END
+
         title = "";
         desc = "";
         patentImg = "";
         number = '';
         price = '';
         ptTitle = '';
-        _UpdateElement();
-    }
 
-    //////////////////////////////////////////////////////////////////////////////////
-    let patentId = document.getElementById('patentIndex').value;
-    let patent = await GetPatentInfo(patentId);
-    let lastBid = await GetCurrentBid(patentId);
-    document.getElementById('patentTotal').innerHTML = await GetPatentCount();
-    document.getElementById('searchButton').onclick = async () => {
-        _UpdateElement();
     }
-    document.getElementById('patentNumber2').innerHTML = patent[0];
-    document.getElementById('salesType2').innerHTML = patent[3] + " (0:SELL, 1:AUCTION)";
-    document.getElementById('patentPrice2').innerHTML = patent[4];
-    document.getElementById('patentDeadline2').innerHTML = patent[5] + " (Time:" + (Math.round(Date.now() / 1000)).toString() + ")";
-    document.getElementById('patentOwner').innerHTML = patent[1];
-    document.getElementById('salesStatus').innerHTML = patent[2] + " (0:REGISTERED, 1:DELETED, 2:FINISHED)";
-    document.getElementById('lastBuyer').innerHTML = lastBid[1];
-    document.getElementById('lastPrice').innerHTML = lastBid[0];
+}
 
-    //////////////////////////////////////////////////////////////////////////////////
+
+async function postBuyPatent() {
     document.getElementById('buyButton').onclick = async () => {
         let patentId = document.getElementById('patentIndex').value;
         let amount = document.getElementById('buyAmount').value;
         await BuyPatent(patentId, amount);
-        _UpdateElement();
     }
-    document.getElementById('balanceBuyer').innerHTML = (await GetSaltCoinBalance(GetCurrentAccount()))+" / "+GetCurrentAccount();
-    document.getElementById('balanceOwner').innerHTML = (await GetSaltCoinBalance(patent[1]))+" / "+patent[1];
-    document.getElementById('balanceMarket').innerHTML = (await GetSaltCoinBalance(patentMarketAddress))+" / "+patentMarketAddress;
-
-    //////////////////////////////////////////////////////////////////////////////////
-    document.getElementById('deleteButton').onclick = async () => {
-        await DeletePatent(document.getElementById('patentIndex').value);
-        _UpdateElement();
-    }
-    document.getElementById('finalizeButton').onclick = async () => {
-        await FinalizePatent(document.getElementById('patentIndex').value);
-        _UpdateElement();
-    }
-
-    //////////////////////////////////////////////////////////////////////////////////
-    document.getElementById('getButton').onclick = async () => {
-        document.getElementById('getResult').innerHTML = JSON.stringify((await GetPatentFile(document.getElementById('getIndex').value)));
-    }
-
 }
+
 
 async function _UpdateAccountAndElement() {
     await _GetAccount();
-    await _UpdateElement();
+    // await _UpdateElement();
 }
 
 function _HandleEvent() {
@@ -294,8 +252,14 @@ function _HandleEvent() {
 
 async function initialize() {
     await _GetAccount();
-    await _UpdateElement();
-    _HandleEvent();
+    // await postRegister();
+    // await postBuyPatent();
+    // await _UpdateElement();
+    // _HandleEvent();
 }
 
+
 window.addEventListener('DOMContentLoaded', initialize);
+
+export {postRegister};
+export {postBuyPatent};

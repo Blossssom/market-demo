@@ -21,47 +21,11 @@
         integrity="sha512-4FUrBDwhBp//QRfPgfiGYgHAYCN+SlfeLdLjo9Di5+wot02uLjTQriXOXv8LnZDt9HovhckPvdihnByFbbfVJA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="create.js" type="text/javascript"></script>
+
 </head>
 
 <body>
     <div class="body-wrap">
-        <div class="display-hidden">
-            Accounts: <span id="accountsDiv"></span><br>
-            ETH: <span id="accountsETH"></span><br>
-            SLT: <span id="accountsSLT"></span><br>
-            NFT: <span id="accountsNFT"></span><br>
-            Total patents : <span id="patentTotal">0</span><br>
-            Index : <input type="text" id="patentIndex" value="0">
-            <button id="searchButton">Get Patent</button><br>
-            Owner : <span id="patentOwner"></span><br>
-            Status : <span id="salesStatus"></span><br>
-            Last Buyer : <span id="lastBuyer"></span><br>
-            Last Price : <span id="lastPrice"></span><br>
-            Deadline : <input type="text" id="patentDeadline" value="0"><span id="currentTime"></span></p>
-            Number : <span id="patentNumber2"></span><br>
-            Type : <span id="salesType2"></span><br>
-            Price : <span id="patentPrice2"></span><br>
-            Deadline : <span id="patentDeadline2"></span><br>
-            <p>==========================================</p>
-            Amount : <input type="text" id="buyAmount" value="0">
-            <button id="buyButton">Buy Patent</button><br>
-            Buyer : <span id="balanceBuyer"></span><br>
-            Owner : <span id="balanceOwner"></span><br>
-            Market : <span id="balanceMarket"></span><br>
-
-            <p>==========================================</p>
-            <button id="deleteButton">Delete Patent</button>
-            <button id="finalizeButton">Finalize Patent</button>
-
-            <p>==========================================</p>
-            Event History<br>
-            <textarea id="eventHistory" rows="10" cols="80"></textarea>
-
-            <p>==========================================</p>
-            Index : <input type="text" id="getIndex" value="0">
-            <button id="getButton">GET</button><br>
-            GET: <span id="getResult"></span><br>
-        </div>
         <header>
             <div class="header-wrap shadow-bottom">
                 <div class="header-nav">
@@ -240,7 +204,8 @@
                                             <div class="hw-100">
                                                 <div class="hw-100">
                                                     <input type="number" placeholder="Enter Deadline"
-                                                        class="create-input__patentnum create-input__value">
+                                                        class="create-input__patentnum create-input__value" value="0"
+                                                        id="patentDeadline">
                                                 </div>
                                             </div>
                                         </div>
@@ -343,8 +308,9 @@
             </div>
         </footer>
     </div>
-    <script src="index.js" type="module" defer></script>
-    <!-- <script src="../js/index.js" type="module" defer></script> -->
+
+    <script src="./registerAction.js" type="module" defer></script>
+
 </body>
 
 </html>

@@ -18,62 +18,6 @@
 </head>
 
 <body>
-
-
-    <div class="display-hidden">
-        <button id="metaMaskButton">Connect to MetaMask</button><br>
-        Accounts: <span id="accountsDiv"></span><br>
-        ETH: <span id="accountsETH"></span><br>
-        SLT: <span id="accountsSLT"></span><br>
-        NFT: <span id="accountsNFT"></span><br>
-        <p>==========================================</p>
-        Number : <input type="text" id="patentNumber" value="12345">
-        <button id="crawlBtn">Crawl</button>
-        <br>
-        Title : <span id="textTitle"></span><br>
-        Type : <input type="text" id="salesType" value="1"> (0:SELL, 1:AUCTION)<br>
-        Price : <input type="text" id="patentPrice" value="100"><br>
-        Deadline : <input type="text" id="patentDeadline" value="0"><span id="currentTime"></span></p>
-
-        <button id="registerButton">Register Patent</button>
-
-        <p>==========================================</p>
-        Total patents : <span id="patentTotal">0</span><br>
-        <!-- Index : <input type="text" id="patentIndex" value="0"> -->
-        <button id="searchButton">Get Patent</button><br>
-        Number : <span id="patentNumber2"></span><br>
-        Type : <span id="salesType2"></span><br>
-        Price : <span id="patentPrice2"></span><br>
-        Deadline : <span id="patentDeadline2"></span><br>
-        Owner : <span id="patentOwner"></span><br>
-        Status : <span id="salesStatus"></span><br>
-        Last Buyer : <span id="lastBuyer"></span><br>
-        Last Price : <span id="lastPrice"></span><br>
-
-        <p>==========================================</p>
-        <!-- Amount : <input type="text" id="buyAmount" value="0"> -->
-        <!-- <button id="buyButton">Buy Patent</button><br> -->
-        Buyer : <span id="balanceBuyer"></span><br>
-        Owner : <span id="balanceOwner"></span><br>
-        Market : <span id="balanceMarket"></span><br>
-
-        <p>==========================================</p>
-        <button id="deleteButton">Delete Patent</button>
-        <button id="finalizeButton">Finalize Patent</button>
-
-        <p>==========================================</p>
-        Event History<br>
-        <textarea id="eventHistory" rows="10" cols="80"></textarea>
-
-        <p>==========================================</p>
-        Index : <input type="text" id="getIndex" value="0">
-        <button id="getButton">GET</button><br>
-        GET: <span id="getResult"></span><br>
-
-        <p>==========================================</p>
-    </div>
-
-
     <div class="detail-full">
         <div class="div-flex__colal h-100" id="modal-out">
             <div class="detail-body">
@@ -83,7 +27,7 @@
                 <div class="modal-detail__txt">
                     <div class="modal-detail__info">
                         <div class="margin-bottom_2r">
-                            <input type="text" id="patentIndex" value="0" class="display-hidden">
+                            <input type="text" id="patentIndex" class="">
                             <div class="modal-box__title">
                                 <h1 id="product-title">Title</h1>
                             </div>
@@ -156,7 +100,7 @@
                 <div class="header-nav">
                     <div class="header-nav__inner">
                         <div class="header-title">
-                            <a href="index.html" class="header-title__logo">
+                            <a href="main.html" class="header-title__logo">
                                 <img src="../assets/images/logo_transparent.png" alt="logo">
                             </a>
                         </div>
@@ -350,7 +294,8 @@
             </div>
         </footer>
     </div>
-    <script src="./index.js" type="module" defer></script>
+
+    <script src="./buyAction.js" type="module"></script>
 </body>
 
 

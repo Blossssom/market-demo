@@ -3,7 +3,7 @@ window.onload = (async function () {
     dropDown();
     // getDirLength();
 
-    for(let i = 2; i <= 100; i++) {
+    for(let i = 5; i <= 100; i++) {
         try{
             await readJson(i).then((items) => {
                 makeCard(items.patent, i);
@@ -135,51 +135,50 @@ function makeCard(data, i) {
     if(checkImg.length === 0) {
         data.img = "https://hangeulaward.co.kr/src/images/noImg.gif";
     }
-    let card = `<div class="col-12 col-md-3 py-3">
+    let card = `<button class="col-12 col-md-3 py-3">
     <div class="contents-hover">
         <div class="card h-100">
             <div class="card-body d-flex flex-column">
                 <div
-                    class="card--color__header margin-bottom_2r d-flex justify-content-between card--color--type__epic">
+                    class="card--color__header d-flex justify-content-between card--color--type__epic">
                     <img src="${data.img}"
                         alt="" class="card-img__border">
                 </div>
 
-                <div class="px-4 d-flex flex-column card-product__title">
-                    <h3 class="card-product__title margin-bottom_1r">
-                        ${data.title}
-                    </h3>
-
-                    <div class="row py-2">
-                        <div class="col pr-0">
-                            <h3 class="m-0 font-weight-light">Price</h3>
+                <div class="d-flex flex-column card-product__title">
+                    <div class="padding-side__1r margin-col__2r">
+                        <h3 class="card-product__title">
+                            ${data.title}
+                        </h3>
+                    </div>
+                    <div class="div-flex__ac card-info__box">
+                        <div class="pr-0 card-product__info">
+                            <div class="m-0 font-weight-light card-price__txt">
+                                Price
+                            </div>
+                            <div class="m-0 font-weight-light font-color__white">
+                                ${data.price}
+                            </div>
                         </div>
-                        <div class="col text-right">
+
+                        <div class="card-product__end">
                             <!-- app-countdown -->
-                            <div>
-                                <h3 class="m-0 font-weight-light">
-                                    ${data.price}
-                                </h3>
+                            <div class="m-0 font-weight-light card-price__txt">
+                                Ending in
+                            </div>
+                            <div class="m-0 font-weight-light font-color__white">
+                                --
                             </div>
                         </div>
                     </div>
                     
                 </div>
-                <div class="mt-auto">
-                    <div class="p-4 mx-4 pt-5">
-
-                        <span class="input-group-prepend">
-                            <button class="btn btn-light btn-url product-item" value=${i}>
-                                Detail
-                            </button>
-                        </span>
-
-                    </div>
-                </div>
+                
             </div>
         </div>
     </div>
-</div>`;
+
+</button>`;
 
 cardBox.innerHTML += card;
 

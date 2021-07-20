@@ -1,22 +1,9 @@
-window.onload = (function() {
-    // createData();
+
+window.onload = (async function() {
     uploadFile();
     auctionBtn();
 });
 
-
-// function createData() {
-//     let createBtn = document.getElementById('create-item__btn');
-//     createBtn.addEventListener('click', function(e) {
-//         let result = getInputValue();
-//         readJson().then((items) => {
-//             items.push(result);
-//             let fs = require('fs');
-//             let path = '../json/contents2.json';
-//             fs.writeFileSync(path, JSON.stringify(items));
-//         });
-//     });
-// };
 
 
 function getInputValue() {
@@ -28,11 +15,7 @@ function getInputValue() {
     return obj;
 };
 
-// function readJson() {
-//     return fetch('../json/contents.json')
-//         .then((response) => response.json())
-//         .then((json) => json.items);
-// };
+
 
 
 function uploadFile() {
@@ -48,6 +31,7 @@ function uploadFile() {
 
 function auctionBtn() {
     let selectAuction = document.getElementsByClassName('create-select__auction');
+    console.log(selectAuction);
     for(item of selectAuction) {    
         item.addEventListener('focus', function(e) {
             for(v of selectAuction) {

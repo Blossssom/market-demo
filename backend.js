@@ -5,10 +5,12 @@ const express = require('express');
 const app = express();
 const port = 9100;
 
-app.use(express.static(__dirname + '/frontend/'));
-app.get('/', (req, res) => res.sendFile(__dirname + '/frontend/index.html'));
-app.listen(port, () => console.log('http://localhost:' + port));
 
+app.use(express.static(__dirname + '/frontend/'));
+app.use(express.static(__dirname + '/frontend/assets/slick'));
+// app.get('/register', (req, res) => res.sendFile(__dirname + '/frontend/index.html'));
+app.get('/main', (req, res) => res.sendFile(__dirname + '/frontend/main.html'));
+app.listen(port, () => console.log('http://localhost:' + port + '/main'));
 
 // NEED TO MERGE
 const fs = require('fs');
@@ -76,7 +78,7 @@ app.get("/file/patents/:id", (req, res) => {
 
 const { ethers } = require("ethers");
 const provider = new ethers.providers.JsonRpcProvider('HTTP://127.0.0.1:7545');
-const patentMarketAddress = '0x99CAEDCDAc9860299a54838051A0FDd947183C9A'; // NEED TO CHANGE
+const patentMarketAddress = '0x6e62f9d95C83B07dd32e59510E845bc634c4312F'; // NEED TO CHANGE
 const patentMarketAbi = [
     "function getPatentById(uint patentId) public view returns(string memory number, address owner, uint8 status, uint8 salesType, uint256 price, uint256 deadline)",
     "event PatentRegistered(address owner, uint patentId)"

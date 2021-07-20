@@ -1,6 +1,6 @@
-const patentMarketAddress = '0x99CAEDCDAc9860299a54838051A0FDd947183C9A'; // NEED TO CHANGE
-const patentNFTAddress = '0xFE084f058bfC051626F4e10ae2ED2855D0ceB9c7'; // NEED TO CHANGE
-const saltCoinAddress = '0xB405dad8b6C31E96E78741dF7C24c3EeD0316c65'; // NEED TO CHANGE
+const patentMarketAddress = '0x6e62f9d95C83B07dd32e59510E845bc634c4312F'; // NEED TO CHANGE
+const patentNFTAddress = '0x4095Cd45E3Eeb03bf3cA8F9d730612D65AeD149C'; // NEED TO CHANGE
+const saltCoinAddress = '0x9e11B47De9D5069ff7992e18Dc96378E4B4BbF53'; // NEED TO CHANGE
 const patentMarketAbi = [
     "function getPatentCount() public view returns(uint)",
     "function getBidsCount(uint patentId) public view returns(uint)",
